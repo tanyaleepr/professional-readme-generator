@@ -18,8 +18,9 @@
   },
   "homepage": "https://github.com/tanyaleepr/professional-readme-generator#readme",
   "dependencies": {
+    "axios": "^0.26.0",
     "basic-readme-generator": "^1.0.6",
-    "inquirer": "^8.2.0"
-  },
-  "devDependencies": {}
+    "inquirer": "^8.2.0",
+    "util": "^0.12.4"
+  }
 }
