@@ -1,6 +1,6 @@
 // TODO: Include packages needed for this application
 const inquirer = require("inquirer");
-const generateReadme = require("./utils/generateMarkdown.js");
+const generateMarkdown = require("./utils/generateMarkdown.js");
 const writeToFile = require("./utils/generateReadme.js");
 
 //// TODO: Create an array of questions for user input
@@ -60,7 +60,7 @@ const questions = [
     },
   },
   {
-    type: "checkbox",
+    type: "list",
     name: "license",
     message: "Which license would you like to include? (Check all that apply)",
     choices: [ "MIT",
