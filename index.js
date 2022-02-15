@@ -1,94 +1,151 @@
 // TODO: Include packages needed for this application
-const fs = require('fs');
-const util = require("util");
-const inquirer = require('inquirer');
-const generateReadme = require("./utils/generateReadme")
-const writeFileAsync = util.promisify(fs.writeFile);
-// TODO: Create an array of questions for user input
-const questions = [];
+const inquirer = require("inquirer");
+const generateReadme = require("./utils/generateMarkdown.js");
+const writeToFile = require("./utils/generate-readme.js");
 
-// TODO: Create a function to write README file
-function promptUser(){
-    return inquirer.prompt([
-        {
-            type: "input",
-            name: "projectTitle",
-            message: "What is the project title?",
-        },
-        {
-            type: "input",
-            name: "description",
-            message: "Write a brief description of your project: "
-        },
-        {
-            type: "input",
-            name: "installation",
-            message: "Describe the installation process if any: ",
-        },
-        {
-            type: "input",
-            name: "usage",
-            message: "What is this project usage for?"
-        },
-        {
-            type: "list",
-            name: "license",
-            message: "Chose the appropriate license for this project: ",
-            choices: [
-                "Apache",
-                "Academic",
-                "GNU",
-                "ISC",
-                "MIT",
-                "Mozilla",
-                "Open"
-            ]
-        },
-        {
-            type: "input",
-            name: "contributing",
-            message: "Who are the contributors of this projects?"
-        },
-        {
-            type: "input",
-            name: "tests",
-            message: "Is there a test included?"
-        },
-        {
-            type: "input",
-            name: "questions",
-            message: "What do I do if I have an issue? "
-        },
-        {
-            type: "input",
-            name: "username",
-            message: "Please enter your GitHub username: "
-        },
-        {
-            type: "input",
-            name: "email",
-            message: "Please enter your email: "
-        }
-    ]);
-} 
+// Questions asked to create the readme
+const questions = [
+  {
+    type: "input",
+    name: "title",
+    message: "What is the title of your project? (Required)",
+    validate: (titleInput) => {
+      if (titleInput) {
+        return true;
+      } else {
+        console.log("Please enter a title!");
+        return false;
+      }
+    },
+  },
+  {
+    type: "input",
+    name: "description",
+    message: "Please enter a description of your project. (Required)",
+    validate: (descriptionInput) => {
+      if (descriptionInput) {
+        return true;
+      } else {
+        console.log("Please enter a description!");
+        return false;
+      }
+    },
+  },
+  {
+    type: "input",
+    name: "installation",
+    message:
+      "Please enter installation instructions for your project. (Required)",
+    validate: (installationInput) => {
+      if (installationInput) {
+        return true;
+      } else {
+        console.log("Please enter installation instructions!");
+        return false;
+      }
+    },
+  },
+  {
+    type: "input",
+    name: "usage",
+    message: "Please enter usage information for your project. (Required)",
+    validate: (usageInput) => {
+      if (usageInput) {
+        return true;
+      } else {
+        console.log("Please enter usage information!");
+        return false;
+      }
+    },
+  },
+  {
+    type: "list",
+    name: "license",
+    message: "Which license would you like to include? (Required)",
+    choices: [
+      "MIT",
+      "Apache License 2.0",
+      "GNU GPLv3",
+      "Mozilla Public License 2.0",
+      "None",
+    ],
+  },
+  {
+    type: "input",
+    name: "contributing",
+    message:
+      "Please enter contribution guidelines for your project. (Required)",
+    validate: (contributingInput) => {
+      if (contributingInput) {
+        return true;
+      } else {
+        console.log("Please enter contribution guidelines!");
+        return false;
+      }
+    },
+  },
+  {
+    type: "input",
+    name: "test",
+    message: "Please enter test instructions for your project. (Required)",
+    validate: (testInput) => {
+      if (testInput) {
+        return true;
+      } else {
+        console.log("Please enter test instructions!");
+        return false;
+      }
+    },
+  },
+  {
+    type: "input",
+    name: "github",
+    message: "Please enter your GitHub username. (Required)",
+    validate: (githubInput) => {
+      if (githubInput) {
+        return true;
+      } else {
+        console.log("Please enter your GitHub username!");
+        return false;
+      }
+    },
+  },
+  {
+    type: "input",
+    name: "email",
+    message: "Please enter your email address. (Required)",
+    validate: (emailInput) => {
+      if (emailInput) {
+        return true;
+      } else {
+        console.log("Please enter your email address!");
+        return false;
+      }
+    },
+  },
+];
 
-// TODO: Create a function to initialize app
-async function init() {
-    try {
-        // Ask user questions and generate responses
-        const answers = await promptUser();
-        const generateContent = generateReadme(answers);
-        // Write new README.md to dist directory
-        await writeFileAsync('./dist/README.md', generateContent);
-        console.log('Successfully wrote to README.md');
-    }   catch(err) {
-        console.log(err);
-    }
-  }
+// Prompts the user with the questions
+const promptReadme = () => {
+  return inquirer.prompt(questions);
+};
+
+// Initializes the application
+function init() {
+  promptReadme(questions)
+    .then((answers) => {
+      return generateMarkdown(answers);
+    })
+    .then((readmeMarkdown) => {
+      return writeToFile(readmeMarkdown);
+    })
+    .then((writeFileResponse) => {
+      console.log(writeFileResponse);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
 
 // Function call to initialize app
-init(); 
-
-
-
-
+init();
