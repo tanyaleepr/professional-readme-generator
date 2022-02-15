@@ -1,7 +1,7 @@
 // TODO: Include packages needed for this application
 const inquirer = require("inquirer");
 const generateReadme = require("./utils/generateMarkdown.js");
-const writeToFile = require("./utils/generate-readme.js");
+const writeToFile = require("./utils/generateReadme.js");
 
 //// TODO: Create an array of questions for user input
 // Questions for readme
@@ -60,11 +60,10 @@ const questions = [
     },
   },
   {
-    type: "list",
+    type: "checkbox",
     name: "license",
-    message: "Which license would you like to include? (Required)",
-    choices: [
-      "MIT",
+    message: "Which license would you like to include? (Check all that apply)",
+    choices: [ "MIT",
       "Apache License 2.0",
       "GNU GPLv3",
       "Mozilla Public License 2.0",
@@ -75,12 +74,12 @@ const questions = [
     type: "input",
     name: "contributing",
     message:
-      "Please enter contribution guidelines for your project. (Required)",
+      "Enter contribution guidelines for your project. (Required)",
     validate: (contributingInput) => {
       if (contributingInput) {
         return true;
       } else {
-        console.log("Please enter contribution guidelines!");
+        console.log("Enter contribution guidelines!");
         return false;
       }
     },
@@ -88,12 +87,12 @@ const questions = [
   {
     type: "input",
     name: "test",
-    message: "Please enter test instructions for your project. (Required)",
+    message: "Enter test instructions for your project. (Required)",
     validate: (testInput) => {
       if (testInput) {
         return true;
       } else {
-        console.log("Please enter test instructions!");
+        console.log("Enter test instructions!");
         return false;
       }
     },
@@ -101,12 +100,12 @@ const questions = [
   {
     type: "input",
     name: "github",
-    message: "Please enter your GitHub username. (Required)",
+    message: "Enter your GitHub username. (Required)",
     validate: (githubInput) => {
       if (githubInput) {
         return true;
       } else {
-        console.log("Please enter your GitHub username!");
+        console.log("Enter your GitHub username!");
         return false;
       }
     },
@@ -114,12 +113,12 @@ const questions = [
   {
     type: "input",
     name: "email",
-    message: "Please enter your email address. (Required)",
+    message: "Enter your email address. (Required)",
     validate: (emailInput) => {
       if (emailInput) {
         return true;
       } else {
-        console.log("Please enter your email address!");
+        console.log("Enter your email address!");
         return false;
       }
     },
