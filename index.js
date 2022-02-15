@@ -3,7 +3,8 @@ const inquirer = require("inquirer");
 const generateReadme = require("./utils/generateMarkdown.js");
 const writeToFile = require("./utils/generate-readme.js");
 
-// Questions asked to create the readme
+//// TODO: Create an array of questions for user input
+// Questions for readme
 const questions = [
   {
     type: "input",
@@ -125,12 +126,13 @@ const questions = [
   },
 ];
 
-// Prompts the user with the questions
+// // TODO: Create a function to write README file / Pops questions for user to answer and shows in readme
 const promptReadme = () => {
   return inquirer.prompt(questions);
 };
 
-// Initializes the application
+// // TODO: Create a function to initialize app 
+//Initializes the application
 function init() {
   promptReadme(questions)
     .then((answers) => {
