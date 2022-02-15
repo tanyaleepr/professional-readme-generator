@@ -6,7 +6,7 @@ function renderLicenseBadge(license) {
     return "";
   } else {
     return `
-![license badge](https://img.shields.io/badge/license-${badgeName}-brightgreen)
+![license badge](https://img.shields.io/badge/license-${badgeName}-brightblue)
     `;
   }
 }
@@ -85,9 +85,7 @@ ${data.contributing}
 ${data.test}
 <a name="questions"></a>
 ## Questions
-If you wish to view more of my work, feel free to visit my GitHub account. Additionally, if you have any questions, you can contact me at the email address below. Thanks!
-[GitHub](https://github.com/${data.github})
-<${data.email}>
+If you have any questions, feel free to reach out at: [GitHub](https://github.com/${data.github}) or <${data.email}>
 `;
 }
 
