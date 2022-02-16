@@ -17,4 +17,5 @@ const writeToFile = (fileContent) => {
   });
 };
 
+
 module.exports = writeToFile;

@@ -1,9 +1,9 @@
-# Readme generator
+# Excuses Generator (Spanish version)
 
 ![license badge](https://img.shields.io/badge/license-MIT-brightblue)
     
 ## Description
-generates a readme
+This project will provide you random excuses for you to use in the case of not wanting to be at work, events, or even school. We help you! :D
 ## Table of Contents
 
 - [Installation](#installation)
@@ -14,10 +14,10 @@ generates a readme
 - [Questions](#questions)
 <a name="installation"></a>
 ## Installation
-node.js
+We used HTML, CSS, and JavaScript for the installation of this project.
 <a name="usage"></a>
 ## Usage
-challenge 9
+The usage is easy, just enter the website and click-on the "Generate Excuse" button for a random excuse.
 <a name="license"></a>
     
 ## License
@@ -27,10 +27,10 @@ This project is covered under the following license:
     
 <a name="contributing"></a>
 ## Contributing
-none
+Currently accepting contributions from developers. Please email us (see information below).
 <a name="tests"></a>
 ## Tests
-none
+When entering the page, you just need to "click-on" the button. 
 <a name="questions"></a>
 ## Questions
 If you have any questions, feel free to reach out at: [GitHub](https://github.com/tanyaleepr) or <tanyaleepr@gmail.com>
